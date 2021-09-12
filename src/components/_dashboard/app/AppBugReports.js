@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
-import bugFilled from '@iconify/icons-ant-design/bug-filled';
+import bugFilled from '@iconify/icons-ant-design/ant-design-outlined';
 // material
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';

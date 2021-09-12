@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import eyeFill from '@iconify/icons-eva/eye-fill';
@@ -8,12 +9,9 @@ import messageCircleFill from '@iconify/icons-eva/message-circle-fill';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@material-ui/core';
 // utils
-import { fDate } from '../../../utils/formatTime';
 import { fShortenNumber } from '../../../utils/formatNumber';
 //
 import SvgIconStyle from '../../SvgIconStyle';
-
-// ----------------------------------------------------------------------
 
 const CardMediaStyle = styled('div')({
   position: 'relative',
@@ -61,7 +59,9 @@ BlogPostCard.propTypes = {
 };
 
 export default function BlogPostCard({ post, index }) {
-  const { cover, title, view, comment, share, author, createdAt } = post;
+  const items = [20, 40, 10, 'clever Hilton'];
+  const { image_url, title } = post;
+  const { view, comment, share, author } = items;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
 
@@ -108,8 +108,8 @@ export default function BlogPostCard({ post, index }) {
             }}
           />
           <AvatarStyle
-            alt={author.name}
-            src={author.avatarUrl}
+            alt={author}
+            src={image_url}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -121,7 +121,7 @@ export default function BlogPostCard({ post, index }) {
             }}
           />
 
-          <CoverImgStyle alt={title} src={cover} />
+          <CoverImgStyle alt={title} src={image_url} />
         </CardMediaStyle>
 
         <CardContent
@@ -139,7 +139,7 @@ export default function BlogPostCard({ post, index }) {
             variant="caption"
             sx={{ color: 'text.disabled', display: 'block' }}
           >
-            {fDate(createdAt)}
+            {/* {fDate(createdAt)} */}
           </Typography>
 
           <TitleStyle

@@ -43,9 +43,9 @@ export default function AppCurrentVisits() {
   const [, setNewsFin] = useState([]);
   const [, setNewsTek] = useState([]);
   const [metadataCon, setMetadataCon] = useState(0);
-  const [metadataCom, setMetadataCom] = useState(null);
-  const [metadataFin, setMetadataFin] = useState(null);
-  const [metadataTek, setMetadataTek] = useState(null);
+  const [metadataCom, setMetadataCom] = useState(0);
+  const [metadataFin, setMetadataFin] = useState(0);
+  const [metadataTek, setMetadataTek] = useState(0);
   const [loading, setLoading] = useState(false);
 
   // const CHART_DATA = [metadataCon];
@@ -63,7 +63,6 @@ export default function AppCurrentVisits() {
       setMetadataCon(found);
     }
 
-    console.log(response, status);
     if (status !== 200) {
       return errors(error?.message);
     }
@@ -83,7 +82,7 @@ export default function AppCurrentVisits() {
       const { found } = meta;
       setMetadataCom(found);
     }
-    console.log(response, status);
+
     if (status !== 200) {
       return errors(error?.message);
     }
@@ -103,7 +102,7 @@ export default function AppCurrentVisits() {
       const { found } = meta;
       setMetadataFin(found);
     }
-    console.log(response, status);
+
     if (status !== 200) {
       return errors(error?.message);
     }
@@ -123,7 +122,7 @@ export default function AppCurrentVisits() {
       const { found } = meta;
       setMetadataTek(found);
     }
-    console.log(response, status);
+
     if (status !== 200) {
       return errors(error?.message);
     }

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { formatDistance } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
-import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
+import arrowIosForwardFill from '@iconify/icons-eva/plus-square-fill';
 // material
 import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader } from '@material-ui/core';
 // utils

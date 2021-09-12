@@ -27,7 +27,7 @@ const useStyles = createUseStyles({
   loading: {
     border: () => `16px solid ${color.lightGrayishBlue}`,
     borderRadius: '50%',
-    borderTop: () => `16px solid #ff6634`,
+    borderTop: () => `16px solid green`,
     width: 120,
     height: 120,
     animationName: '$loadingSpin',

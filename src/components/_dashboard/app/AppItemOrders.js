@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
-import windowsFilled from '@iconify/icons-ant-design/windows-filled';
+import windowsFilled from '@iconify/icons-ant-design/minus-square-filled';
 // material
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
@@ -8,6 +8,7 @@ import { Card, Typography } from '@material-ui/core';
 import { fShortenNumber } from '../../../utils/formatNumber';
 import { getRequest } from '../../../services/request';
 import { errors } from '../../../services/swal_mixin';
+import { API_TOKEN } from '../../../services/config';
 
 // ----------------------------------------------------------------------
 
@@ -38,7 +39,6 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function AppItemOrders() {
-  const API_TOKEN = 'g0Lki8TT2kR98INVLTmVsj1FAMgPEYtDSyvt1Lik';
   const [, setNews] = useState([]);
   const [metadata, setMetadata] = useState(null);
 
@@ -48,12 +48,15 @@ export default function AppItemOrders() {
     );
     const { data, meta, error } = response?.data;
     const status = response?.status;
+    if (meta) {
+      const { found } = meta;
+      setMetadata(found);
+    }
     if (status !== 200) {
       return errors(error.message);
     }
     if (status === 200) {
       setNews(data);
-      setMetadata(meta?.found);
     }
   }
 

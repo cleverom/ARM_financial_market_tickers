@@ -24,12 +24,12 @@ import { Link } from 'react-router-dom';
 import Page from '../components/Page';
 import Scrollbar from '../components/Scrollbar';
 import SearchNotFound from '../components/SearchNotFound';
-import { UserListHead, UserListToolbar } from '../components/_dashboard/user';
+import { UserListHead, UserListToolbar } from '../components/_dashboard/news';
 import { getRequest } from '../services/request';
 import { errors } from '../services/swal_mixin';
 import { API_TOKEN } from '../services/config';
-
-// ----------------------------------------------------------------------
+import Loading from '../components/loading';
+import store from '../redux';
 
 const TABLE_HEAD = [
   { id: 'source', label: 'Source', alignRight: false },
@@ -39,8 +39,6 @@ const TABLE_HEAD = [
   { id: 'keyword', label: 'Keyword', alignRight: false },
   { id: '' }
 ];
-
-// ----------------------------------------------------------------------
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -88,12 +86,14 @@ export default function News() {
   const [rowsPerPage, setRowsPerPage] = useState(3);
   const [news, setNews] = useState([]);
   const [metadata, setMetadata] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function NewsData() {
-    console.log(page);
+    setLoading(true);
     const response = await getRequest(
       `news/all?page=${page + 1}&limit=${rowsPerPage}&language=en&api_token=${API_TOKEN}`
     );
+    setLoading(false);
     const { data, meta, error } = response?.data;
     const status = response?.status;
     console.log(response, status);
@@ -164,22 +164,23 @@ export default function News() {
 
   const isUserNotFound = filteredUsers.length === 0;
 
+  function similarNews(news) {
+    console.log(news);
+    store.dispatch({
+      type: 'SIMILAR',
+      payload: news
+    });
+  }
+
   return (
     <>
+      <Loading loading={loading} />
       <Page title="Financial News | ARM News">
         <Container>
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
             <Typography variant="h4" gutterBottom>
               Financial News
             </Typography>
-            {/* <Button
-            variant="contained"
-            component={RouterLink}
-            to="#"
-            startIcon={<Icon icon={plusFill} />}
-          >
-            New User
-          </Button> */}
           </Stack>
 
           <Card>
@@ -212,7 +213,8 @@ export default function News() {
                           description,
                           relevance_score,
                           keywords,
-                          image_url
+                          image_url,
+                          similar
                           // eslint-disable-next-line camelcase
                         } = row;
                         const isItemSelected = selected.indexOf(source) !== -1;
@@ -272,7 +274,7 @@ export default function News() {
                             <TableCell align="left">{keywords.substring(0, 40)}</TableCell>
                             <TableCell stle={{ cursor: 'pointer' }} align="left">
                               <Link to="/dashboard/similar">
-                                <VisibilityIcon />
+                                <VisibilityIcon onClick={() => similarNews(similar)} />
                               </Link>
                             </TableCell>
                           </TableRow>
