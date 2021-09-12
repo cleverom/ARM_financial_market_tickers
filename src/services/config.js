@@ -1,3 +1,3 @@
-const API_TOKEN = 'wx5xNmbXRNKze6gffV6mxV0m9RNILo6XJa10JkTd';
+const API_TOKEN = 'm5PJ4H6Ulf9M4zN5GlYO78Ie7UpDdSOyj1J7YrJt';
 
 export { API_TOKEN };

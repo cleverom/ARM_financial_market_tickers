@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 import { filter } from 'lodash';
 // import { sentenceCase } from 'change-case';
@@ -88,29 +89,27 @@ export default function News() {
   const [metadata, setMetadata] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  async function NewsData() {
-    setLoading(true);
-    const response = await getRequest(
-      `news/all?page=${page + 1}&limit=${rowsPerPage}&language=en&api_token=${API_TOKEN}`
-    );
-    setLoading(false);
-    const { data, meta, error } = response?.data;
-    const status = response?.status;
-    console.log(response, status);
-    if (status !== 200) {
-      return errors(error.message);
-    }
-    if (status === 200) {
-      setNews(data);
-      setMetadata(meta?.found);
-    }
-  }
-
   console.log(news, metadata);
 
   useEffect(() => {
-    NewsData();
-  }, [page]);
+    (async () => {
+      setLoading(true);
+      const response = await getRequest(
+        `news/all?page=${page + 1}&limit=${rowsPerPage}&language=en&api_token=${API_TOKEN}`
+      );
+      setLoading(false);
+      const { data, meta, error } = response?.data;
+      const status = response?.status;
+      console.log(response, status);
+      if (status !== 200) {
+        return errors(error.message);
+      }
+      if (status === 200) {
+        setNews(data);
+        setMetadata(meta?.found);
+      }
+    })();
+  }, [page, rowsPerPage]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';

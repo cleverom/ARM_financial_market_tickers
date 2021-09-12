@@ -70,7 +70,7 @@ export default function AppNewsUpdate() {
 
   useEffect(() => {
     NewsData();
-  }, []);
+  });
 
   return (
     <Card>
