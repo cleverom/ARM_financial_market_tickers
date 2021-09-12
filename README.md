@@ -1,11 +1,6 @@
-Preview of  landing page
+Preview of **landing page**
 
-<img
-src=“public\static\preview1.png”
-raw=true
-alt=“Subject Pronouns”
-style=“margin-right: 10px;”
-/>
+![Preview](images/preview1.png)
 
 1. How long did you spend on the coding test?
 
