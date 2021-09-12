@@ -3,13 +3,25 @@ Technical Questions and **Answers**
 
 1. How long did you spend on the coding test?
 
+### I spent 48 hours on the coding test
+
+
 2. What would you add to your solution if you had more time? If you did not spend much time on the coding test, then use this as an opportunity to explain what you would add.
+
+### If I had more time, I would have include the following:
+
+#### Ability to get real-time changes on the charts as the data changes.
+
+#### Include a trend charts that keeps track of positive and negative needs.
+
+#### Add a feature that will enable visulization of trending financial news.
+
 
 3. What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you have used it.
 
-## One of the latest feature added to Javascript is Async Await(it is an extension of promises which enables us write promise based-code synchronuosly as seen in the snippet below).
+### One of the latest feature added to Javascript is Async Await(it is an extension of promises which enables us write promise based-code synchronuosly as seen in the snippet below).
 
-```
+```javascript
 const getRequest = async (url, data, base = baseUrl) => {
   try {
     const r = await axios.get(`${base}/${url}`, data, setHeader());
@@ -23,8 +35,6 @@ const getRequest = async (url, data, base = baseUrl) => {
 };
 
 ```
-
-
 
 4. How would you track down a performance issue in production? Have you ever had to do this?
 
