@@ -1,6 +1,11 @@
 Preview of  landing page
 
-![GitHub Logo](/static/preview1.png)
+<img
+src=“public\static\preview1.png”
+raw=true
+alt=“Subject Pronouns”
+style=“margin-right: 10px;”
+/>
 
 1. How long did you spend on the coding test?
 
